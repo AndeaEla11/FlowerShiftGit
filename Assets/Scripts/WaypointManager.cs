@@ -23,10 +23,8 @@ public class WaypointManager : MonoBehaviour
 
     void Update()
     {
-        if (!isMoving)
-        {
-            return;
-        }
+        if (!isMoving)return;
+        
 
         if (waypointIndex < wayPoints.Count)
         {
