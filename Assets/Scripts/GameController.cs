@@ -12,22 +12,22 @@ public class GameController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        Debug.Log("Game started -> spawning first NPC");
+        SpawnCustomer();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SpawnCustomer()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) 
-        {
-            GameObject NPC = Instantiate(NPCPrefab, spawnPosition.position, spawnPosition.rotation);
+        GameObject NPC = Instantiate(NPCPrefab, spawnPosition.position, spawnPosition.rotation);
 
-            WaypointManager waypointManager = NPC.GetComponent<WaypointManager>();
-            waypointManager.wayPoints.Clear();
-            waypointManager.wayPoints.Add(counterPosition);
-            waypointManager.wayPoints.Add(exitPosition);
+        WaypointManager waypointManager = NPC.GetComponent<WaypointManager>();
+        waypointManager.wayPoints.Clear();
+        waypointManager.wayPoints.Add(counterPosition);
+        waypointManager.wayPoints.Add(exitPosition);
 
-            waypointManager.StartMoving();
-        }
+        waypointManager.StartMoving();
+
+        CustomerFlow flow = NPC.GetComponentInChildren<CustomerFlow>(); 
+        flow.Initiate(this, waypointManager, counterPosition, exitPosition);
     }
 }

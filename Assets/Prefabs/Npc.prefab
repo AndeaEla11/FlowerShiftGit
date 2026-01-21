@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1087916581015211861}
   - component: {fileID: 3306711048166862546}
   - component: {fileID: 9220263109371092286}
+  - component: {fileID: 5354781601258967054}
   m_Layer: 0
   m_Name: Npc
   m_TagString: Untagged
@@ -126,3 +127,15 @@ MonoBehaviour:
   waypointIndex: 0
   moveSpeed: 7
   rotationSpeed: 3
+--- !u!114 &5354781601258967054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3980766685105613512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e43a9f86e062e4642a1dd15aebce8407, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
