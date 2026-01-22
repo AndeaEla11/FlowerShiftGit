@@ -71,7 +71,7 @@ public class CustomerFlow : MonoBehaviour
     {
         Debug.Log("NPC exited");
 
-        Destroy(gameObject);
+        Destroy(transform.root.gameObject);
 
         gameController.SpawnCustomer();
     }

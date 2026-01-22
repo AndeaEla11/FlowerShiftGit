@@ -3,7 +3,6 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     [SerializeField] private GameObject NPCPrefab;
-
     [SerializeField] private Transform spawnPosition;
     [SerializeField] private Transform counterPosition;
     [SerializeField] private Transform exitPosition;
@@ -23,8 +22,6 @@ public class GameController : MonoBehaviour
         WaypointManager waypointManager = NPC.GetComponent<WaypointManager>();
         waypointManager.wayPoints.Clear();
         waypointManager.wayPoints.Add(counterPosition);
-        waypointManager.wayPoints.Add(exitPosition);
-
         waypointManager.StartMoving();
 
         CustomerFlow flow = NPC.GetComponentInChildren<CustomerFlow>(); 

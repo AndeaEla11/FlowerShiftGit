@@ -41,6 +41,10 @@ public class WaypointManager : MonoBehaviour
                 waypointIndex++;
             }
         }
+        else
+        {
+            isMoving = false;
+        }
 
     }
 }
