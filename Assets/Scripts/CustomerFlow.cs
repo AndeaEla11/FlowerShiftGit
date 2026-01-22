@@ -42,6 +42,9 @@ public class CustomerFlow : MonoBehaviour
     void OnArrivedAtCounter()
     {
         Debug.Log("NPC arrived at counter"); 
+
+        OrderUI ui = FindFirstObjectByType<OrderUI>();
+        ui.ShowOrder(); 
     }
 
     public void OnBouquetDelivered()
