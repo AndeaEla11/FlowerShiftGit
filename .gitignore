@@ -104,7 +104,6 @@ InitTestScene*.unity*
 
 # Large 3D source files
 *.fbx
-*.fbx.meta
 
 # Ignore the big bought scene folder 
 Assets/[MySimsWorld]FlowerShop/
