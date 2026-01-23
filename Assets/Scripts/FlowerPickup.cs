@@ -8,7 +8,6 @@ public class FlowerPickup : MonoBehaviour
     [SerializeField] private float yOffset = 0.02f;
 
     private GameObject dragged;
-    private bool isDragging;
 
     void Awake()
     {
@@ -21,27 +20,18 @@ public class FlowerPickup : MonoBehaviour
         if (spawnPrefab == null || worldCamera == null) return;
 
         dragged = Instantiate(spawnPrefab);
-        isDragging = true;
     }
 
     void OnMouseDrag()
     {
-        if (!isDragging || dragged == null) return;
+        if (dragged == null) return;
 
         Ray ray = worldCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit, 100f, bouquetSurfaceMask))
         {
-            float extra = yOffset;
-
-            Collider col = dragged.GetComponentInChildren<Collider>();
-            if (col != null)
-            {
-                extra += col.bounds.extents.y;
-            }
-
-            dragged.transform.position = hit.point + Vector3.up * extra;
+            dragged.transform.position = hit.point + Vector3.up * yOffset;
         }
     }
 
@@ -49,16 +39,22 @@ public class FlowerPickup : MonoBehaviour
     {
         if (dragged == null) return;
 
-        Ray ray = worldCamera.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
+        BouquetSlotManager slots = FindFirstObjectByType<BouquetSlotManager>();
+        Transform slot = slots.GetNextSlot();
 
-        if (!Physics.Raycast(ray, out hit, 100f, bouquetSurfaceMask))
+        if (slot != null)
         {
-            Destroy(dragged);
+            dragged.transform.position = slot.position;
+            dragged.transform.rotation = slot.rotation;
+
+            BouquetBuilder builder = FindFirstObjectByType<BouquetBuilder>();
+            if (builder != null)
+            {
+                builder.RegisterFlower(dragged);
+            }
         }
 
         dragged = null;
-        isDragging = false;
     }
 
 }
