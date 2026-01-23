@@ -1344,7 +1344,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1455842675}
         m_TargetAssemblyTypeName: OrderUI, Assembly-CSharp
-        m_MethodName: HideOrder
+        m_MethodName: StartBuilding
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1397,11 +1397,11 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 330585546}
+  - {fileID: 1652632861}
   - {fileID: 410087041}
   - {fileID: 832575519}
   - {fileID: 985107515}
   - {fileID: 813562946}
   - {fileID: 1455842674}
-  - {fileID: 1652632861}
   - {fileID: 773190229}
   - {fileID: 1964602097}
