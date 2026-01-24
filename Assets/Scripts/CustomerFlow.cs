@@ -10,7 +10,6 @@ public class CustomerFlow : MonoBehaviour
 
     private bool waitingAtCounter = false;
     private bool leaving = false;
-
     public void Initiate(GameController controller, WaypointManager wm, Transform counter, Transform exit)
     {
         gameController = controller;
@@ -18,8 +17,6 @@ public class CustomerFlow : MonoBehaviour
         counterPoint = counter;
         exitPoint = exit;
     }
-
-    // Update is called once per frame
     void Update()
     {
         if (!waitingAtCounter && HasArrived())
@@ -33,25 +30,28 @@ public class CustomerFlow : MonoBehaviour
             OnArrivedAtExit();
         }
     }
-
     bool HasArrived()
     {
         return !waypointManager.isMoving;
     }
-
     void OnArrivedAtCounter()
     {
-        Debug.Log("NPC arrived at counter"); 
+        Debug.Log("NPC arrived at counter");  
+
+        if (GameState.bouquetDelivered)
+        {
+            GameState.bouquetDelivered = false;
+            OnBouquetDelivered();
+            return;
+        }
 
         OrderUI ui = FindFirstObjectByType<OrderUI>();
-        ui.ShowOrder(); 
+        ui.ShowOrder();
     }
-
     public void OnBouquetDelivered()
     {
         Debug.Log("Bouquet delivered");
     }
-
     public void OnGoodbyeClicked()
     {
         Debug.Log("Goodbye clicked");
@@ -64,12 +64,10 @@ public class CustomerFlow : MonoBehaviour
         waypointManager.StartMoving();
 
     }
-
     void OnMouseDown()
     {
         OnGoodbyeClicked();
     }
-
     void OnArrivedAtExit()
     {
         Debug.Log("NPC exited");
@@ -78,6 +76,4 @@ public class CustomerFlow : MonoBehaviour
 
         gameController.SpawnCustomer();
     }
-
-
 }
