@@ -19,6 +19,11 @@ public class CustomerFlow : MonoBehaviour
     }
     void Update()
     {
+        if(waypointManager == null || gameController == null)
+        {
+            return;
+        }
+
         if (!waitingAtCounter && HasArrived())
         {
             waitingAtCounter = true;
@@ -51,10 +56,28 @@ public class CustomerFlow : MonoBehaviour
     public void OnBouquetDelivered()
     {
         Debug.Log("Bouquet delivered");
+
+        OrderUI orderUI = FindFirstObjectByType<OrderUI>();
+        if (orderUI != null) 
+        {
+            orderUI.HideOrder();
+        }
+
+        FeedbackUI feedback = FindAnyObjectByType<FeedbackUI>();
+        if (feedback != null)
+        {
+            feedback.Show();
+        }
     }
     public void OnGoodbyeClicked()
     {
         Debug.Log("Goodbye clicked");
+
+        FeedbackUI feedback = FindFirstObjectByType<FeedbackUI>();
+        if (feedback != null)
+        {
+            feedback.Hide();
+        }
 
         leaving = true;
         waitingAtCounter = false;
@@ -62,11 +85,6 @@ public class CustomerFlow : MonoBehaviour
         waypointManager.wayPoints.Clear();
         waypointManager.wayPoints.Add(exitPoint);
         waypointManager.StartMoving();
-
-    }
-    void OnMouseDown()
-    {
-        OnGoodbyeClicked();
     }
     void OnArrivedAtExit()
     {
