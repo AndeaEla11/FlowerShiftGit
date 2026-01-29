@@ -10,6 +10,9 @@ public class CustomerFlow : MonoBehaviour
 
     private bool waitingAtCounter = false;
     private bool leaving = false;
+
+    public static OrderData currentOrder;
+
     public void Initiate(GameController controller, WaypointManager wm, Transform counter, Transform exit)
     {
         gameController = controller;
@@ -43,6 +46,9 @@ public class CustomerFlow : MonoBehaviour
     {
         Debug.Log("NPC arrived at counter");  
 
+        currentOrder = new OrderData();
+        currentOrder.requiredFlowers = Random.Range(3, 7);
+
         if (GameState.bouquetDelivered)
         {
             GameState.bouquetDelivered = false;
@@ -51,7 +57,7 @@ public class CustomerFlow : MonoBehaviour
         }
 
         OrderUI ui = FindFirstObjectByType<OrderUI>();
-        ui.ShowOrder();
+        ui.ShowOrder(currentOrder.requiredFlowers);
     }
     public void OnBouquetDelivered()
     {
@@ -66,7 +72,12 @@ public class CustomerFlow : MonoBehaviour
         FeedbackUI feedback = FindAnyObjectByType<FeedbackUI>();
         if (feedback != null)
         {
-            feedback.Show();
+            if (GameState.bouquetAccepted)
+                feedback.ShowText("That's perfect!");
+            else
+                feedback.ShowText("Not quite, but Thank you!");
+
+            GameState.bouquetDelivered = false;
         }
     }
     public void OnGoodbyeClicked()
