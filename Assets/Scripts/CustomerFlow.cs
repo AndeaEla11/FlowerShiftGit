@@ -46,8 +46,9 @@ public class CustomerFlow : MonoBehaviour
     {
         Debug.Log("NPC arrived at counter");  
 
-        currentOrder = new OrderData();
-        currentOrder.requiredFlowers = Random.Range(3, 7);
+        OrderManager.Istance.GenerateNewOrder();
+        OrderUI orderUI = FindFirstObjectByType<OrderUI>();
+        orderUI.ShowOrder(OrderManager.Istance.CurrentOrder.requiredFlowers);
 
         if (GameState.bouquetDelivered)
         {
@@ -56,8 +57,6 @@ public class CustomerFlow : MonoBehaviour
             return;
         }
 
-        OrderUI ui = FindFirstObjectByType<OrderUI>();
-        ui.ShowOrder(currentOrder.requiredFlowers);
     }
     public void OnBouquetDelivered()
     {

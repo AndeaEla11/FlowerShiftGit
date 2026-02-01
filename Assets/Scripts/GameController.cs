@@ -7,8 +7,6 @@ public class GameController : MonoBehaviour
     [SerializeField] private Transform counterPosition;
     [SerializeField] private Transform exitPosition;
 
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         SpawnCustomer();
