@@ -76,6 +76,7 @@ public class CustomerFlow : MonoBehaviour
             else
                 feedback.ShowText("Not quite, but Thank you!");
 
+            feedback.ShowResults(GameState.required, GameState.placed);
             GameState.bouquetDelivered = false;
         }
     }
