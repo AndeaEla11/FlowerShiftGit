@@ -11,4 +11,9 @@ public class BouquetBuilder : MonoBehaviour
         flower.transform.SetParent(transform); // keep bouquet organised
         Debug.Log("Flowers placed: " + placedFlowers.Count);
     }
+
+    public int GetCount()
+    {
+        return placedFlowers.Count;
+    }
 }

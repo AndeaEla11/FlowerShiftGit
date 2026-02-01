@@ -13,7 +13,14 @@ public class BouquetSceneUI : MonoBehaviour
             return;
         }
 
-        GameState.bouquetAccepted = builder.placedFlowers.Count >= 3;
+        if (OrderManager.Istance == null || OrderManager.Istance.CurrentOrder == null)
+        {
+            Debug.LogError("Missing OrderManager or CurrentOrder. Cannot Validare.");
+            return;
+        }
+
+        OrderValidator.ValidateOrder(OrderManager.Istance.CurrentOrder, builder);
+
         GameState.bouquetDelivered = true;
         SceneManager.LoadScene("OrderScene");
     }

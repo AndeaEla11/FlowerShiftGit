@@ -71,7 +71,7 @@ public class CustomerFlow : MonoBehaviour
         FeedbackUI feedback = FindAnyObjectByType<FeedbackUI>();
         if (feedback != null)
         {
-            if (GameState.bouquetAccepted)
+            if (GameState.isCorrect)
                 feedback.ShowText("That's perfect!");
             else
                 feedback.ShowText("Not quite, but Thank you!");

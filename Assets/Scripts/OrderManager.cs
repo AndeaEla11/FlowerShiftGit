@@ -18,6 +18,7 @@ public class OrderManager : MonoBehaviour
         }
 
         Istance = this;
+        DontDestroyOnLoad(gameObject);
 
         if (orders.Count == 0)
         {
