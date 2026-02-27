@@ -29,10 +29,10 @@ public class FeedbackUI : MonoBehaviour
         resultsPanel.SetActive(false);
     }
 
-    public void ShowResults(int required, int achieved)
+    public void ShowResults(int required, int placed)
     {
         requiredText.text = "Required: " + required.ToString();
-        resultsText.text = "Result: " + achieved.ToString();
+        resultsText.text = "Placed: " + placed.ToString();
         resultsPanel.SetActive(true);
     }
 
